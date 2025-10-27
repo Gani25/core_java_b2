@@ -39,7 +39,7 @@ public class Variable {
  * 5. float -> Decimal Numbers -> 4byte
  * 6. double -> Decimal Numbers -> 8byte
  * 7. char -> 2byte -> unicode encoding
- * 8. boolean -> True / False -> 1bit
+ * 8. boolean -> True / False -> 1bit = 1 byte
  * 
  * */	
 
