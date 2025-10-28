@@ -26,4 +26,3 @@ public class While2 {
 }
 
 // WAP to print factorial of n
-// WAP to print table of 5 till 10 iterations
