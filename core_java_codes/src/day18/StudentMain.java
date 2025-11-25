@@ -37,8 +37,14 @@ public class StudentMain {
 		 * System.out.println("After sorting by percentage in ASC");
 		 * students.forEach(stud-> System.out.println(stud));
 		 */
+		/*
+		 * students.sort(null);
+		 * System.out.println("After sorting by name length in ASC");
+		 * students.forEach(stud-> System.out.println(stud));
+		 */
+
 		students.sort(null);
-		System.out.println("After sorting by name length in ASC");
+		System.out.println("After sorting by name alphabetical in ASC");
 		students.forEach(stud-> System.out.println(stud));
 	}
 }
