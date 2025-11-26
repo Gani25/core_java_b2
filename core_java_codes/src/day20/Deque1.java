@@ -2,7 +2,6 @@ package day20;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 
 public class Deque1 {
 	
