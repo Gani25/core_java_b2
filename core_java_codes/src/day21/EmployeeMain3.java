@@ -2,6 +2,7 @@ package day21;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class EmployeeMain3 {
 
@@ -14,12 +15,12 @@ public class EmployeeMain3 {
 		Employee2 e4 = new Employee2(5, "Shruti", "Female");
 
 		// This will compare reference and not values
-		Set<Employee2> employees = new HashSet<Employee2>();
+		Set<Employee2> employees = new TreeSet<Employee2>();
 		
+		employees.add(e4);
 		employees.add(e1);
 		employees.add(e2); // compare hashCode repeated so skip
 		employees.add(e3);
-		employees.add(e4);
 		
 		employees.forEach(System.out::println);
 	}

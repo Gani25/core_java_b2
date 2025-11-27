@@ -2,7 +2,7 @@ package day21;
 
 import java.util.Objects;
 
-public class Employee2 {
+public class Employee2 implements Comparable<Employee2> {
 
 	private int empId;
 	
@@ -71,6 +71,12 @@ public class Employee2 {
 	public int hashCode() {
 		// TODO Auto-generated method stub
 		return Objects.hash(empId, name, gender);
+	}
+
+
+	@Override
+	public int compareTo(Employee2 o) {
+		return Integer.compare(empId, o.empId);
 	}
 	
 	
