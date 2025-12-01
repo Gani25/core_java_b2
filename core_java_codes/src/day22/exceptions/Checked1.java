@@ -28,8 +28,6 @@ public class Checked1 {
 				sc.close();
 				System.out.println("File Closed SUccessfully");
 			}
-		}
-		
+		}	
 	}
-
 }
