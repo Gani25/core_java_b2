@@ -78,15 +78,14 @@ public class StudentDao {
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-
 		ResultSet resultSet = preparedStatement.executeQuery();
-		
+
 		// We have many rows -> no idea about number of rows -> while loop
-		List<Student> allStudents = new LinkedList<Student>(); 
+		List<Student> allStudents = new LinkedList<Student>();
 		// size == 0 -> No students found/ db is empty
-		
-		while(resultSet.next()) {
-			
+
+		while (resultSet.next()) {
+
 			Student student = new Student();
 			student.setFirstName(resultSet.getString("first_name"));
 			student.setLastName(resultSet.getString("last_name"));
@@ -94,13 +93,66 @@ public class StudentDao {
 			student.setGender(resultSet.getString("gender"));
 			student.setAccCreatedAt(resultSet.getTimestamp("acc_created_at"));
 			student.setAccUpdatedAt(resultSet.getTimestamp("last_update"));
-			
+
 			allStudents.add(student);
-			
+
 		}
-		
+
 		closeAll(connection, preparedStatement, resultSet);
 		return allStudents;
+	}
+
+	private Student getStudentByRollNo(int rollNo) throws SQLException {
+
+		String sql = "select * from student where roll_no = ?";
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+		preparedStatement.setInt(1, rollNo);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
+		Student student = null;
+		if (resultSet.next()) {
+			student = new Student();
+			student.setFirstName(resultSet.getString("first_name"));
+			student.setLastName(resultSet.getString("last_name"));
+			student.setRollNo(resultSet.getInt("roll_no"));
+			student.setGender(resultSet.getString("gender"));
+			student.setAccCreatedAt(resultSet.getTimestamp("acc_created_at"));
+			student.setAccUpdatedAt(resultSet.getTimestamp("last_update"));
+		}
+		
+		closeAll(null, preparedStatement, resultSet);
+
+		return student;
+
+	}
+
+	public boolean deleteStudent(int rollNo) throws Exception {
+
+		// Step 1: CHeck whether the student with rollNo exists or not?
+		Student dbStudent = getStudentByRollNo(rollNo);
+
+		// if student not exists then throw error
+		if (dbStudent == null) {
+			closeAll(connection, null, null);
+			throw new Exception("Student with roll no = " + rollNo + " not found");
+		}
+
+		String sql = "delete from student where roll_no = ?";
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+		preparedStatement.setInt(1, rollNo);
+
+		int result = preparedStatement.executeUpdate();
+
+		closeAll(connection, preparedStatement, null);
+		if (result > 0) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private void closeAll(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet)
