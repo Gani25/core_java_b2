@@ -28,7 +28,6 @@ public class Str3 {
 		
 		System.out.println(fruitsStr);
 		
-	
 		
 	}
 
