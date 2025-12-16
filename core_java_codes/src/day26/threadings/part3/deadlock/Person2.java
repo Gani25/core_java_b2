@@ -16,7 +16,7 @@ public class Person2 extends Thread {
 	public void run() {
 
 		// Person 2 Notebook
-//		notebook.use();
+		notebook.use();
 		pen.write(notebook);
 	}
 
